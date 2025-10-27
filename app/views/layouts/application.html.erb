@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DataBridge</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header style="padding:8px;border-bottom:1px solid #eee">
+      <nav>
+        <%= link_to "Home", root_path %> |
+        <%= link_to "Files", files_path %>
+      </nav>
+    </header>
+
+    <main style="padding:16px">
+      <%= yield %>
+    </main>
+  </body>
+</html>

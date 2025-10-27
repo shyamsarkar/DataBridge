@@ -1,0 +1,74 @@
+Gemspec/AddRuntimeDependency:
+  Enabled: true
+Gemspec/AttributeAssignment:
+  Enabled: true
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: true
+
+# Basic project settings
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-erb
+
+AllCops:
+  TargetRubyVersion: 3.4
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'coverage/**/*'
+    - 'storage/**/*' # exclude uploaded files
+    - 'spec/fixtures/**/*'
+
+# Use rubocop-rails recommended config if installed
+inherit_gem:
+  rubocop-rails: default.yml
+
+# Rails specific
+Rails:
+  Enabled: true
+
+# Style preferences (adjust to taste)
+Layout/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+
+Metrics/AbcSize:
+  Max: 30
+
+# Allow some pragmatic exemptions commonly used in Rails apps
+Lint/AmbiguousBlockAssociation:
+  Enabled: true
+
+Performance/FixedSize:
+  Enabled: true
+
+# Naming conventions (tolerances for Rails generators)
+Naming/PredicateName:
+  Enabled: true
+
+# Keep some cops conservative to avoid churn on existing code
+Layout/EmptyLinesAroundClassBody:
+  Enabled: true
+
+# Enable safe auto-correct where possible
+AutoCorrect: true

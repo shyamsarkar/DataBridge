@@ -1,0 +1,37 @@
+<h1>Files</h1>
+
+<% if notice %>
+  <p style="color:green"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p style="color:red"><%= alert %></p>
+<% end %>
+
+<table style="width:100%;border-collapse:collapse">
+  <thead>
+    <tr>
+      <th style="text-align:left">Name</th>
+      <th style="text-align:right">Size</th>
+      <th style="text-align:right">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @files.each do |f| %>
+      <tr style="border-top:1px solid #eee">
+        <td><%= f[:name] %></td>
+        <td style="text-align:right"><%= number_to_human_size(f[:size]) %></td>
+        <td style="text-align:right">
+          <%= link_to "Download", download_file_path(filename: f[:name]), class: "btn", rel: "noopener" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Upload</h2>
+<%= form_with url: files_path, multipart: true, local: true do |form| %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload" %>
+<% end %>
